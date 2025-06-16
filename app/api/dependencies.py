@@ -12,5 +12,5 @@ async def get_api_key(api_key: str = Security(api_key_header)):
     return api_key
 
 async def get_query_processor():
-    async with db_manager.get_session() as session:
+    async with (await db_manager.get_session()) as session:
         yield QueryProcessor(session)

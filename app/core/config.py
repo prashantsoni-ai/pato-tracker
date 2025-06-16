@@ -4,16 +4,16 @@ from pydantic import field_validator
 
 class Settings(BaseSettings):
     # Database Configuration
-    db_user: str = "postgres"
-    db_password: str = ""
-    db_host: str = "localhost"
-    db_port: str = "5432"
-    db_name: str = "lfuportal"
+    db_user: str
+    db_password: str
+    db_host: str
+    db_port: str
+    db_name: str
     
     # Application Configuration
-    app_host: str = "0.0.0.0"
-    app_port: int = 8000
-    debug: bool = False
+    app_host: str  
+    app_port: int 
+    debug: bool 
     
     # Security
     allowed_hosts: List[str] = ["*"]
@@ -46,5 +46,6 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = False
+        env_prefix = ""
 
 settings = Settings()
