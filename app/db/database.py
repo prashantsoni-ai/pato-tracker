@@ -13,13 +13,15 @@ class DatabaseManager:
             f"postgresql+asyncpg://{settings.db_user}:{settings.db_password}"
             f"@{settings.db_host}:{settings.db_port}/{settings.db_name}"
         )
+        print("self: ", self.connection_string)
     
+
     def get_engine(self):
         if self.engine is None:
             try:
                 self.engine = create_async_engine(
                     self.connection_string,
-                    poolclass=QueuePool,
+                    # poolclass=QueuePool,
                     pool_size=20,
                     max_overflow=10,
                     pool_timeout=30,
